@@ -54,3 +54,35 @@ def heart_rate_zone(age, heart_rate):
         zone = 5
     return zone, heart_rate_zones[zone], round(percentage,1)
 
+#BODY METHABOLIC RATE----------------
+def calculate_bmr(sex, weight_kg, height_cm, age):
+    if sex not in ("male", "female"):
+        raise ValueError("Sex must be 'male' or 'female'.")
+    if weight_kg <= 0 or height_cm <= 0 or age <= 0:
+        raise ValueError("Weight, height and age must be positive.")
+    base = 10 * weight_kg + 6.25 * height_cm - 5 * age
+    if sex=="male":
+        return base + 5
+    else:
+        return base - 161
+    #differences male and female because the eq is different
+ 
+
+def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal):
+    if activity_level not in activity_multiplicator_list:
+        raise ValueError("Invalid activity level.")
+    if goal not in goal_loose_weight:
+        raise ValueError("Invalid goal.")
+    bmr = calculate_bmr(sex, weight_kg, height_cm, age)
+    maintenance = bmr * activity_multiplicator_list[activity_level]
+    return round(maintenance + goal_loose_weight[goal])
+
+#WATER-------------------------
+def calculate_daily_water(weight_kg, exercise_minutes):
+    if weight_kg <= 0:
+        raise ValueError("Weight must be positive.")
+    if exercise_minutes < 0:
+        raise ValueError("Exercise minutes cannot be negative.")
+    base = weight_kg * water_ml_per_kg
+    extra = exercise_minutes / 60 * water_ml_per_kg_sporthours
+    return round(base + extra)
