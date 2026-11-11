@@ -1,5 +1,5 @@
 #necesary parameters
-activity_multiplicator_list=[1.2,1.375,1.55,1.725,1.]
+activity_multiplicator_list=[1.2,1.375,1.55,1.725,1.9]
     #each number corresponds to BMR depending on the physical activity WEEKLY (sedentary,light,moderate,high, very high)
 goal_loose_weight={"lose":-500,"maintain":0,"gain":300}
     #this is a dictionary, contains the aim of the calories wanted to be loosed or gained
@@ -67,22 +67,23 @@ def calculate_bmr(sex, weight_kg, height_cm, age):
         return base - 161
     #differences male and female because the eq is different
  
-
+#DAILY CALORIES----------------will determinate how many cal based on your aim
 def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal):
     if activity_level not in activity_multiplicator_list:
         raise ValueError("Invalid activity level.")
     if goal not in goal_loose_weight:
         raise ValueError("Invalid goal.")
     bmr = calculate_bmr(sex, weight_kg, height_cm, age)
-    maintenance = bmr * activity_multiplicator_list[activity_level]
+    maintenance = bmr * activity_level
     return round(maintenance + goal_loose_weight[goal])
 
-#WATER-------------------------
+#DAILY WATER-------------------------
 def calculate_daily_water(weight_kg, exercise_minutes):
     if weight_kg <= 0:
         raise ValueError("Weight must be positive.")
     if exercise_minutes < 0:
         raise ValueError("Exercise minutes cannot be negative.")
     base = weight_kg * water_ml_per_kg
-    extra = exercise_minutes / 60 * water_ml_per_kg_sporthours
+    extra = (exercise_minutes / 60) * water_ml_per_kg_sporthours
     return round(base + extra)
+
