@@ -1,1 +1,6 @@
-print(1)
+"""Inicializates the program"""
+
+from src.interface import main_menu
+
+if __name__ == "__main__":
+    main_menu()
