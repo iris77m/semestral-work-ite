@@ -1,8 +1,8 @@
-"""Unit tests for src/calculators.py."""
+"""Unit tests for src/calculator.py."""
 
 import unittest
 
-from src import calculators as calc
+from src import calculator as calc
 
 
 class TestBMI(unittest.TestCase):
