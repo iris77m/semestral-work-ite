@@ -37,7 +37,7 @@ def max_heart_rate(age):
 
 def heart_rate_zone(age, heart_rate):
     max_hr = max_heart_rate(age)
-    if heart_rate < 0 or heart_rate > max_hr:
+    if heart_rate < 1 or heart_rate > max_hr:
         raise ValueError("Heart rate must be between 0 and the maximum heart rate.")
     percentage = (heart_rate / max_hr) * 100
     if percentage < 50:
