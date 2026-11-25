@@ -42,9 +42,8 @@ def max_heart_rate(age):
     return round(heart_rate)
 
 def heart_rate_zone(age, heart_rate):
-"""Return (zone number, zone name, percentage of maximum heart rate).
+    """Return (zone number, zone name, percentage of maximum heart rate).
     Raises ValueError if the heart rate is below 1 or above the maximum. """
-
     max_hr = max_heart_rate(age)
     if heart_rate < 1 or heart_rate > max_hr:
         raise ValueError("Heart rate must be between 1 and the maximum heart rate.")
@@ -65,6 +64,7 @@ def heart_rate_zone(age, heart_rate):
 
 #BODY METHABOLIC RATE----------------
 def calculate_bmr(sex, weight_kg, height_cm, age):
+    """Calculate Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation. Sex must be 'male' or 'female'. Weight in kg, height in cm, age in years."""
     if sex not in ("male", "female"):
         raise ValueError("Sex must be 'male' or 'female'.")
     if weight_kg <= 0 or height_cm <= 0 or age <= 0:
@@ -78,6 +78,7 @@ def calculate_bmr(sex, weight_kg, height_cm, age):
  
 #DAILY CALORIES----------------will determinate how many cal based on your aim
 def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal):
+    """Return daily calories recommended . Level activity goes from 1 to 5 and goal could be 'lose', 'maintain' or 'gain'."""
     if activity_level not in activity_multiplicator:
         raise ValueError("Invalid activity level.")
     if goal not in goal_loose_weight:
@@ -88,6 +89,7 @@ def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal
 
 #DAILY WATER-------------------------
 def calculate_daily_water(weight_kg, exercise_minutes):
+    """Calculate daily water intake in milliliters."""
     if weight_kg <= 0:
         raise ValueError("Weight must be positive.")
     if exercise_minutes < 0:

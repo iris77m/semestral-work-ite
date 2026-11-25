@@ -7,7 +7,8 @@ from src import calculator as calc
 
 
 def ask_number(prompt, minimum, maximum):
-    #ask for a number 
+    """Ask for a number until it is valid and within [minimum, maximum]."""
+ 
     while True:
         raw = input(prompt).strip().replace(",", ".") #elimina todo lo que no queremos como espacios y puntos
         try:
@@ -21,7 +22,8 @@ def ask_number(prompt, minimum, maximum):
 
 
 def ask_choice(prompt, valid_options):
-    #asks for a str
+    """Ask until the user types one of the valid options (list of str)."""
+
     while True:
         answer = input(prompt).strip().lower()
         if answer in valid_options:
@@ -30,7 +32,7 @@ def ask_choice(prompt, valid_options):
 
 
 def run_bmi():
-    #weight and height and print BMI and its category
+    """Ask for weight and height and print the BMI and its category."""
     weight = ask_number("Weight (kg): ", 1, 300) #establishes limits of height and weight
     height = ask_number("Height (cm): ", 1, 300)
     bmi = calc.calculate_bmi(weight, height)
@@ -85,13 +87,14 @@ ACTIONS = {"1": run_bmi, "2": run_heart_zone, "3": run_calories,
            "4": run_water}
 
 def main_menu():
+    """Show the menu in a loop until the user chooses to exit."""
     while True:
         print(MENU)
         choice = ask_choice("Choose an option: ", ["0", "1", "2", "3", "4"])
         if choice == "0":
             print("Goodbye!")
             return
-        ACTIONS[choice]()
+        
 
         try:
             ACTIONS[choice]()
