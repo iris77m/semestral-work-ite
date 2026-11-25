@@ -84,16 +84,32 @@ The testing approach, rationale and sample input/output pairs are described in [
 
 ```
 semestral-work-ite/
+├── docs/
+│   ├── diagrams/
+│   │   ├── modules.png
+│   │   └── program_flow.png
+│   ├── notes.md
+│   └── tests.md
 ├── src/
-│   ├── calculator.py   # formulas (no input/print)
-│   └── interface.py    # menu and user interaction
-├── tests/              # automated tests
-├── docs/               # tests.md and diagrams
-├── main.py             # runs the program
-├── test_main.py        # runs all tests
-└── README.md
+│   ├── __init__.py
+│   ├── calculator.py
+│   └── interface.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_calculator.py
+│   └── test_interface.py
+├── .gitignore
+├── LICENSE
+├── main.py
+├── README.md
+├── requirements.txt
+└── test_main.py
 ```
+### Program logic and flow
 
+The main menu loops through options `1`–`4` until option `0` is selected, validating numeric and choice inputs before calling the calculation functions in `src/calculator.py`.
+
+![Program Flow Diagram](docs/diagrams/program_flow.png)
 
 ## Limitations and known issues
 
