@@ -3,7 +3,7 @@ it shows a menu, asks the user for the data needed by the chosen
 calculation and prints the result.
 """
 
-from src import calculators as calc
+from src import calculator as calc
 
 
 def ask_number(prompt, minimum, maximum):
@@ -92,3 +92,8 @@ def main_menu():
             print("Goodbye!")
             return
         ACTIONS[choice]()
+
+        try:
+            ACTIONS[choice]()
+        except ValueError as error:
+            print(f"Error: {error}")

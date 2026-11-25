@@ -65,7 +65,7 @@ class TestCalories(unittest.TestCase):
 
     def test_calories_by_goal(self):
         # Cambiado 3 por el multiplicador real 1.55 (actividad moderada)
-        args = ("male", 70, 175, 30, 1.55) #args es tupla de 5 datos fijos de una persona para comprobar en el test
+        args = ("male", 70, 175, 30, 3) #args es tupla de 5 datos fijos de una persona para comprobar en el test
         self.assertEqual(calc.calculate_daily_calories(*args, "maintain"),
                          2556)
         self.assertEqual(calc.calculate_daily_calories(*args, "lose"), 2056)
@@ -74,11 +74,11 @@ class TestCalories(unittest.TestCase):
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError):
             calc.calculate_bmr("other", 70, 175, 30)
-        # Cambiado 9 por 9.9 (multiplicador inexistente) y 3 por 1.55
+        
         with self.assertRaises(ValueError):
-            calc.calculate_daily_calories("male", 70, 175, 30, 9.9, "lose")
+            calc.calculate_daily_calories("male", 70, 175, 30, 9, "lose")
         with self.assertRaises(ValueError):
-            calc.calculate_daily_calories("male", 70, 175, 30, 1.55, "fly")
+            calc.calculate_daily_calories("male", 70, 175, 30, 3, "fly")
 
 
 class TestWater(unittest.TestCase):

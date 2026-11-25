@@ -51,9 +51,12 @@ class TestINTERFACE(unittest.TestCase):
         self.assertIn("Invalid number", out)
 
     def test_out_of_range_is_retried(self):
-        out = run_with_inputs(["1", "5", "70", "175", "0"])
+        out = run_with_inputs(["1", "500", "70", "175", "0"])
         self.assertIn("must be between", out)
-
+        
+    def test_heart_rate_above_max_shows_error(self):
+        out = run_with_inputs(["2", "30", "190", "0"])
+        self.assertIn("Error", out)
 
 if __name__ == "__main__":
     unittest.main()

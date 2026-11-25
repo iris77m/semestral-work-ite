@@ -1,3 +1,5 @@
+"""Runs all the tests in tests/"""
+
 import unittest  #imports unittest module to run the tests
 
 if __name__ == "__main__":

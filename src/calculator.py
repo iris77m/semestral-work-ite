@@ -1,3 +1,7 @@
+"""Pure calculation functions for the Human Calculator.
+No user interaction (no input/print): only formulas.
+"""
+
 #necesary parameters
 activity_multiplicator={1:1.2,2:1.375,3:1.55,4:1.725,5:1.9}
     #each number corresponds to BMR depending on the physical activity WEEKLY (sedentary,light,moderate,high, very high)
@@ -9,7 +13,7 @@ heart_rate_zones={0:"Rest",1:"Zone 1: recovery",2:"Zone 2: light",3:"Zone 3: Mod
 
 #BODY MASS INDEX--------------
 def calculate_bmi(weight_kg, height_cm):
-    #Body Mass Index calculation. Do not insert negative values, it will return a ValueError
+    """Body Mass Index calculation. Do not insert negative values, it will return a ValueError"""
     if weight_kg <= 0 or height_cm <= 0:
         raise ValueError("Weight and height must be positive values.")
     height_to_m = height_cm / 100
@@ -18,6 +22,8 @@ def calculate_bmi(weight_kg, height_cm):
         #we round the final result to 1 decimal
 
 def classify_bmi(bmi):
+    """Return the WHO category name for a BMI value."""
+
     if bmi < 18.5:
         return "Underweight"
     elif 18.5 <= bmi < 25:
@@ -29,13 +35,16 @@ def classify_bmi(bmi):
 
 #HEART RATE ZONES----------------
 def max_heart_rate(age):
-    #Maximum heart rate calculation based on age
+    """Return the estimated maximum heart rate (bpm), Tanaka formula."""
     if age <= 0:
         raise ValueError("Age must be a positive value.")
     heart_rate = 208-0.7*age
     return round(heart_rate)
 
 def heart_rate_zone(age, heart_rate):
+"""Return (zone number, zone name, percentage of maximum heart rate).
+    Raises ValueError if the heart rate is below 1 or above the maximum. """
+
     max_hr = max_heart_rate(age)
     if heart_rate < 1 or heart_rate > max_hr:
         raise ValueError("Heart rate must be between 1 and the maximum heart rate.")
@@ -74,7 +83,7 @@ def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal
     if goal not in goal_loose_weight:
         raise ValueError("Invalid goal.")
     bmr = calculate_bmr(sex, weight_kg, height_cm, age)
-    maintenance = bmr * activity_multipliers[activity_level]
+    maintenance = bmr * activity_multiplicator[activity_level]
     return round(maintenance + goal_loose_weight[goal])
 
 #DAILY WATER-------------------------
