@@ -1,5 +1,5 @@
 #necesary parameters
-activity_multiplicator_list=[1.2,1.375,1.55,1.725,1.9]
+activity_multiplicator={1:1.2,2:1.375,3:1.55,4:1.725,5:1.9}
     #each number corresponds to BMR depending on the physical activity WEEKLY (sedentary,light,moderate,high, very high)
 goal_loose_weight={"lose":-500,"maintain":0,"gain":300}
     #this is a dictionary, contains the aim of the calories wanted to be loosed or gained
@@ -38,7 +38,7 @@ def max_heart_rate(age):
 def heart_rate_zone(age, heart_rate):
     max_hr = max_heart_rate(age)
     if heart_rate < 1 or heart_rate > max_hr:
-        raise ValueError("Heart rate must be between 0 and the maximum heart rate.")
+        raise ValueError("Heart rate must be between 1 and the maximum heart rate.")
     percentage = (heart_rate / max_hr) * 100
     if percentage < 50:
         zone =0
@@ -69,12 +69,12 @@ def calculate_bmr(sex, weight_kg, height_cm, age):
  
 #DAILY CALORIES----------------will determinate how many cal based on your aim
 def calculate_daily_calories(sex, weight_kg, height_cm, age,activity_level, goal):
-    if activity_level not in activity_multiplicator_list:
+    if activity_level not in activity_multiplicator:
         raise ValueError("Invalid activity level.")
     if goal not in goal_loose_weight:
         raise ValueError("Invalid goal.")
     bmr = calculate_bmr(sex, weight_kg, height_cm, age)
-    maintenance = bmr * activity_level
+    maintenance = bmr * activity_multipliers[activity_level]
     return round(maintenance + goal_loose_weight[goal])
 
 #DAILY WATER-------------------------
