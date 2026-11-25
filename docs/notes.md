@@ -81,7 +81,7 @@ To obtain daily maintenance calories, $\text{BMR}$ is multiplied by a weekly phy
 
 Finally, a caloric offset is applied depending on the user's weight goal, and the result is rounded to the nearest whole calorie:
 
-$$\text{Daily Calories} = \text{round}\big((\text{BMR} \times \text{multiplier}) + \text{goal\_offset}\big)$$
+$$\text{Daily Calories} = \text{round}\big((\text{BMR} \times \text{multiplier}) + \text{goal offset}\big)$$
 
 | Goal | Caloric Offset ($\text{kcal/day}$) |
 |---|---|
@@ -100,7 +100,7 @@ Daily hydration combines a resting baseline proportional to body weight ($35\tex
 
 $$\text{Base Water (ml)} = \text{weight}_{kg} \times 35$$
 
-$$\text{Exercise Extra (ml)} = \left(\frac{\text{exercise\_minutes}}{60}\right) \times 500$$
+$$\text{Exercise Extra (ml)} = \left(\frac{\text{exercise minutes}}{60}\right) \times 500$$
 
 $$\text{Daily Water (ml)} = \text{round}(\text{Base Water} + \text{Exercise Extra})$$
 
